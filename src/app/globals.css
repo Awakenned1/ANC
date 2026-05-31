@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-yellow:  #F7C600;
+  --primary-green:   #00853F;
+  --dark-green:      #005A2C;
+  --primary-black:   #0A0A0A;
+  --light-yellow:    #FFD84D;
+  --neon-green:      #00FF84;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  /* Site-wide fixed background image */
+  background-color: #0A0A0A;
+  background-image: url('/ANCBG.png');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,.8); }
+::-webkit-scrollbar-thumb { background: #00853F; border-radius: 3px; }
+
+/* ── Section overlay layers ────────────────────── */
+/* Each section sits on top of the fixed bg with a dark tint */
+.section-overlay {
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(0px);
+}
+
+.section-overlay-light {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.section-overlay-green {
+  background: rgba(0, 35, 15, 0.78);
+}
+
+/* ── Glassmorphism utilities ───────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-gold {
+  background: rgba(247, 198, 0, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(247, 198, 0, 0.22);
+}
+
+.glass-green {
+  background: rgba(0, 133, 63, 0.10);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(0, 133, 63, 0.28);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.60);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ── Neon glow pulse ───────────────────────────── */
+@keyframes neonPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,255,132,.35), 0 0 40px rgba(0,255,132,.12); }
+  50%       { box-shadow: 0 0 38px rgba(0,255,132,.65), 0 0 75px rgba(0,255,132,.22); }
+}
+.neon-card { animation: neonPulse 2.5s ease-in-out infinite; }
+
+/* ── Animated gradient hero accent ────────────── */
+@keyframes gradShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* ── Logo glow pulse ───────────────────────────── */
+@keyframes logoGlow {
+  from {
+    box-shadow:
+      0 0 0 4px #FFCC00,
+      0 0 0 7px #007A33,
+      0 0 0 9px rgba(255,204,0,0.30),
+      0 0 22px rgba(255,204,0,0.65),
+      0 0 45px rgba(255,204,0,0.28),
+      0 10px 35px rgba(0,0,0,0.70);
+  }
+  to {
+    box-shadow:
+      0 0 0 4px #FFCC00,
+      0 0 0 7px #007A33,
+      0 0 0 9px rgba(255,204,0,0.45),
+      0 0 36px rgba(255,204,0,0.90),
+      0 0 70px rgba(255,204,0,0.45),
+      0 10px 35px rgba(0,0,0,0.70);
+  }
+}
