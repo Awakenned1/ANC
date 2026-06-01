@@ -9,6 +9,9 @@
   --primary-black:   #0A0A0A;
   --light-yellow:    #FFD84D;
   --neon-green:      #00FF84;
+  --font-bebas: "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
+  --font-outfit: "Outfit", "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-dancing: "Dancing Script", "Brush Script MT", "Segoe Script", cursive;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
