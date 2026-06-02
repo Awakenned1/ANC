@@ -1,6 +1,5 @@
 import SiteHeader         from "@/components/SiteHeader";
 import HeroBanner         from "@/components/HeroBanner";
-import ElectionCountdown  from "@/components/ElectionCountdown";
 import ImportantDatesSection from "@/components/ImportantDatesSection";
 import WardByElections    from "@/components/WardByElections";
 import VoterInformation   from "@/components/VoterInformation";
@@ -12,7 +11,6 @@ export default function Home() {
     <main>
       <SiteHeader />
       <HeroBanner />
-      <ElectionCountdown />
       <ImportantDatesSection />
       <WardByElections />
       <VoterInformation />

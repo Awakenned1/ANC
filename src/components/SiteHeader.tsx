@@ -34,8 +34,8 @@ export default function SiteHeader() {
         borderBottom: "2px solid #007A33",
       }}
     >
-      <div className="max-w-[1280px] mx-auto px-4 flex items-center justify-between gap-4"
-           style={{ paddingTop: "0.4rem", paddingBottom: "0.4rem" }}>
+       <div className="w-full px-4 flex items-center justify-between gap-4"
+         style={{ paddingTop: "0.4rem", paddingBottom: "0.4rem" }}>
 
         {/* Brand */}
         <div className="flex items-center gap-3 flex-shrink-0">
