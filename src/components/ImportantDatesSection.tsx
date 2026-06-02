@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Vote, Info } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, Info, Vote } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const cards = [
   {
@@ -22,6 +23,43 @@ const cards = [
 ];
 
 export default function ImportantDatesSection() {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const scrollToIndex = (index: number) => {
+    const carousel = carouselRef.current;
+    const card = carousel?.children.item(index) as HTMLElement | null;
+    card?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+  };
+
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const updateActiveIndex = () => {
+      const cards = Array.from(carousel.children) as HTMLElement[];
+      const scrollLeft = carousel.scrollLeft;
+      const current = cards.reduce(
+        (bestIndex, node, index) => {
+          const distance = Math.abs(node.offsetLeft - scrollLeft);
+          const bestDistance = Math.abs(cards[bestIndex]?.offsetLeft - scrollLeft);
+          return distance < bestDistance ? index : bestIndex;
+        },
+        0,
+      );
+      setActiveIndex(current);
+    };
+
+    updateActiveIndex();
+    carousel.addEventListener("scroll", updateActiveIndex, { passive: true });
+    window.addEventListener("resize", updateActiveIndex);
+
+    return () => {
+      carousel.removeEventListener("scroll", updateActiveIndex);
+      window.removeEventListener("resize", updateActiveIndex);
+    };
+  }, []);
+
   return (
     <section id="dates" className="py-20 relative">
       <div className="absolute inset-0 section-overlay-green" />
@@ -30,7 +68,7 @@ export default function ImportantDatesSection() {
         <motion.div
           initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }} transition={{ duration:0.65 }}
-          className="text-center mb-12">
+          className="text-center mb-8 md:mb-12">
           <p className="font-outfit font-bold text-white/40 uppercase tracking-[0.3em] mb-3"
              style={{ fontSize:"0.78rem" }}>Mark Your Calendar</p>
           <h2 className="font-outfit font-black text-white uppercase"
@@ -39,18 +77,49 @@ export default function ImportantDatesSection() {
           </h2>
         </motion.div>
 
+        <div className="flex items-center justify-between gap-3 mb-4 md:mb-6">
+          <p className="text-white/45 text-xs md:text-sm tracking-[0.2em] uppercase">
+            Swipe or use the arrows to browse upcoming dates
+          </p>
+          <div className="hidden md:flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="Previous date"
+              onClick={() => scrollToIndex(Math.max(activeIndex - 1, 0))}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105 disabled:opacity-40 disabled:cursor-not-allowed"
+              disabled={activeIndex === 0}
+              style={{ background: "rgba(0,0,0,.35)", border: "1px solid rgba(247,198,0,.18)" }}
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              aria-label="Next date"
+              onClick={() => scrollToIndex(Math.min(activeIndex + 1, cards.length - 1))}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105 disabled:opacity-40 disabled:cursor-not-allowed"
+              disabled={activeIndex === cards.length - 1}
+              style={{ background: "rgba(0,0,0,.35)", border: "1px solid rgba(247,198,0,.18)" }}
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+
         <div className="-mx-4 px-4 md:mx-0 md:px-0">
-          <div className="flex gap-4 md:grid md:grid-cols-3 md:gap-6 overflow-x-auto md:overflow-visible py-2 snap-x snap-mandatory">
+          <div
+            ref={carouselRef}
+            className="flex gap-4 overflow-x-auto md:overflow-visible py-2 snap-x snap-mandatory scroll-smooth"
+          >
             {cards.map(({ Icon, iconBg, iconClr, tag, date, time, tagClr, desc }, i) => (
               <motion.div
                 key={tag}
                 initial={{ opacity:0, y:36 }} whileInView={{ opacity:1, y:0 }}
                 viewport={{ once:true }} transition={{ duration:0.55, delay: i*0.08 }}
                 whileHover={{ y:-6, transition:{ duration:0.18 } }}
-                className="snap-start shrink-0 min-w-[84%] sm:min-w-[65%] md:min-w-0 md:w-auto"
+                className="snap-start shrink-0 min-w-[88%] sm:min-w-[72%] md:min-w-[55%] lg:min-w-[32%]"
               >
                 <div
-                  className="p-6 rounded-2xl cursor-default h-full"
+                  className="p-5 sm:p-6 rounded-2xl cursor-default h-full"
                   style={{
                     background: "rgba(255,255,255,0.96)",
                     backdropFilter: "blur(10px)",
@@ -59,18 +128,18 @@ export default function ImportantDatesSection() {
                     boxShadow: "0 10px 30px rgba(2,6,23,0.08)",
                   }}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-4">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
                            style={{ background: iconBg }}>
                         <Icon size={18} color={iconClr} />
                       </div>
-                      <span className="font-outfit font-bold uppercase tracking-wide text-gray-500 text-xs">
+                      <span className="font-outfit font-bold uppercase tracking-wide text-gray-500 text-xs leading-tight">
                         {tag}
                       </span>
                     </div>
-                    <div className="text-right">
-                      <div className="font-outfit font-black text-gray-900 leading-none" style={{ fontSize: '1.25rem' }}>{date}</div>
+                    <div className="text-left md:text-right">
+                      <div className="font-outfit font-black text-gray-900 leading-tight" style={{ fontSize: 'clamp(1.1rem, 3vw, 1.25rem)' }}>{date}</div>
                       <div className="font-outfit font-bold mt-1" style={{ fontSize: '0.78rem', color: tagClr }}>{time}</div>
                     </div>
                   </div>
@@ -80,6 +149,22 @@ export default function ImportantDatesSection() {
               </motion.div>
             ))}
           </div>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 mt-5 md:mt-6">
+          {cards.map((card, index) => (
+            <button
+              key={card.tag}
+              type="button"
+              aria-label={`Go to ${card.tag}`}
+              onClick={() => scrollToIndex(index)}
+              className="h-2 rounded-full transition-all"
+              style={{
+                width: activeIndex === index ? "1.75rem" : "0.55rem",
+                background: activeIndex === index ? "#F7C600" : "rgba(255,255,255,.28)",
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>

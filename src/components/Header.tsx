@@ -36,15 +36,15 @@ export default function Header() {
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "none",
       }}
     >
-      <div className="max-w-[1440px] mx-auto px-6 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3 sm:gap-4">
 
         {/* Brand */}
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border-2"
+            className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden flex-shrink-0 border-2"
             style={{
               borderColor: "#FFC107",
               boxShadow: "0 0 20px rgba(255,193,7,0.45)",
@@ -56,13 +56,14 @@ export default function Header() {
               className="w-full h-full object-cover"
             />
           </motion.div>
-          <div className="hidden sm:flex flex-col leading-none">
-            <span className="text-[0.65rem] font-bold text-white/80 tracking-widest uppercase">
+          <div className="flex min-w-0 flex-col leading-none">
+            <span className="font-bold text-white/80 tracking-widest uppercase whitespace-nowrap"
+                  style={{ fontSize: "clamp(0.5rem, 1.8vw, 0.65rem)" }}>
               TOLOMANE MNYAYIZA
             </span>
             <span
-              className="text-[1.3rem] font-black tracking-widest uppercase leading-tight"
-              style={{ color: "#FFC107" }}
+              className="font-black tracking-widest uppercase leading-tight whitespace-nowrap"
+              style={{ color: "#FFC107", fontSize: "clamp(0.9rem, 3vw, 1.3rem)" }}
             >
               REGION
             </span>
@@ -84,7 +85,7 @@ export default function Header() {
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           <button className="hidden lg:flex p-2 text-white/50 hover:text-white transition-colors">
             <Search size={17} />
           </button>
@@ -121,7 +122,7 @@ export default function Header() {
               borderColor: "rgba(255,255,255,0.07)",
             }}
           >
-            <div className="px-6 py-4 flex flex-col gap-1">
+            <div className="px-4 sm:px-6 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
@@ -135,7 +136,7 @@ export default function Header() {
               ))}
               <a
                 href="#"
-                className="mt-3 self-start px-6 py-2 rounded-full text-sm font-bold text-white uppercase"
+                className="mt-3 self-start px-5 py-2 rounded-full text-sm font-bold text-white uppercase"
                 style={{ background: "#0E7A3D" }}
               >
                 JOIN ANC

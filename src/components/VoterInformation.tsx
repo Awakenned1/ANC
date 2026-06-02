@@ -72,10 +72,10 @@ export default function VoterInformation() {
                     aria-checked={done}
                   >
                     <span
-                      className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                      className="w-4 h-4 rounded flex items-center justify-center flex-shrink-0 transition-all duration-200"
                       style={{
                         background: done ? "#F7C600" : "rgba(255,255,255,.15)",
-                        border: done ? "2px solid #F7C600" : "2px solid rgba(255,255,255,.3)",
+                        border: done ? "2px solid #F7C600" : "1.5px solid rgba(255,255,255,.3)",
                         boxShadow: done ? "0 0 8px rgba(247,198,0,.5)" : "none",
                       }}
                     >
@@ -88,7 +88,7 @@ export default function VoterInformation() {
                             exit={{ scale: 0, opacity: 0 }}
                             transition={{ type: "spring", stiffness: 500, damping: 30 }}
                           >
-                            <Check size={11} color="#000" strokeWidth={3.5} />
+                            <Check size={9} color="#000" strokeWidth={3.5} />
                           </motion.span>
                         )}
                       </AnimatePresence>
@@ -122,27 +122,32 @@ export default function VoterInformation() {
               <h3 className="font-outfit font-extrabold uppercase tracking-widest"
                   style={{ fontSize:"0.85rem", color:"#F7C600" }}>Required ID</h3>
             </div>
-            <div
-              className="mb-5 overflow-hidden rounded-2xl border"
-              style={{ borderColor: "rgba(247,198,0,.22)", background: "rgba(255,255,255,.04)" }}
-            >
-              <img
-                src="/ID%20.png"
-                alt="Accepted voter identification documents"
-                className="w-full h-auto object-contain"
-              />
-            </div>
-            <p className="text-white/45 mb-5" style={{ fontSize:"0.78rem", lineHeight:1.6 }}>
-              Present one of these valid documents at your voting station:
-            </p>
-            <div className="flex flex-col gap-3">
-              {idDocs.map(({ label, color }) => (
-                <div key={label} className="flex items-center gap-3 p-3 rounded-xl"
-                     style={{ background:"rgba(255,255,255,.04)", border:"1px solid rgba(255,255,255,.07)" }}>
-                  <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background:color }} />
-                  <span className="font-outfit font-semibold text-white" style={{ fontSize:"0.78rem" }}>{label}</span>
+            <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+              <div
+                className="overflow-hidden rounded-2xl border lg:self-stretch"
+                style={{ borderColor: "rgba(247,198,0,.22)", background: "rgba(255,255,255,.04)" }}
+              >
+                <img
+                  src="/ID%20.png"
+                  alt="Accepted voter identification documents"
+                  className="w-full h-full min-h-[180px] object-contain"
+                />
+              </div>
+
+              <div>
+                <p className="text-white/45 mb-4" style={{ fontSize:"0.78rem", lineHeight:1.6 }}>
+                  Present one of these valid documents at your voting station:
+                </p>
+                <div className="flex flex-col gap-2">
+                  {idDocs.map(({ label, color }) => (
+                    <div key={label} className="flex items-center gap-3 p-2.5 rounded-xl"
+                         style={{ background:"rgba(255,255,255,.04)", border:"1px solid rgba(255,255,255,.07)" }}>
+                      <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background:color }} />
+                      <span className="font-outfit font-semibold text-white leading-snug" style={{ fontSize:"0.78rem" }}>{label}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </motion.div>
 
