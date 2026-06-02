@@ -4,35 +4,20 @@ import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 
 const elections = [
-  { date:"10 June 2026",  province:"KwaZulu-Natal",          color:"#F7C600" },
-  { date:"17 June 2026",  province:"Eastern Cape",            color:"#60a5fa" },
-  { date:"24 June 2026",  province:"Mpumalanga & North West", color:"#a855f7" },
+  { date:"10 June 2026",  province:"KwaZulu-Natal",          color:"#4ADE80" },
+  { date:"17 June 2026",  province:"Eastern Cape",            color:"#F7C600" },
+  { date:"24 June 2026",  province:"Mpumalanga & North West", color:"#00853F" },
 ];
 
 function SaMap() {
   return (
-    <svg viewBox="0 0 280 240" className="w-full max-w-[240px] mx-auto" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="mapGlow2" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor="#00853F" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#00853F" stopOpacity="0.05" />
-        </radialGradient>
-      </defs>
-      <path d="M55 38 L105 24 L160 22 L200 30 L228 50 L245 75 L250 100 L248 126 L238 150 L222 170 L202 187 L180 198 L158 204 L136 206 L112 202 L90 196 L72 184 L56 168 L42 148 L34 124 L30 100 L34 76 L44 56 Z"
-            fill="url(#mapGlow2)" stroke="#00853F" strokeWidth="1.5" />
-      <circle cx="216" cy="138" r="6" fill="#F7C600" opacity="0.9">
-        <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="180" cy="176" r="6" fill="#60a5fa" opacity="0.9">
-        <animate attributeName="r" values="6;10;6" dur="2s" begin="0.6s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="148" cy="80" r="6" fill="#a855f7" opacity="0.9">
-        <animate attributeName="r" values="6;10;6" dur="2s" begin="1.2s" repeatCount="indefinite"/>
-      </circle>
-      <text x="222" y="132" fill="#F7C600" fontSize="8" fontFamily="sans-serif" opacity="0.8">KZN</text>
-      <text x="158" y="192" fill="#60a5fa" fontSize="8" fontFamily="sans-serif" opacity="0.8">EC</text>
-      <text x="114" y="76"  fill="#a855f7" fontSize="8" fontFamily="sans-serif" opacity="0.8">MP/NW</text>
-    </svg>
+    <div className="w-full max-w-[320px] mx-auto rounded-2xl overflow-hidden border" style={{ borderColor: "rgba(247,198,0,.18)" }}>
+      <img
+        src="/map.png"
+        alt="South Africa ward by-elections map"
+        className="block w-full h-auto object-contain"
+      />
+    </div>
   );
 }
 
@@ -59,7 +44,7 @@ export default function WardByElections() {
             initial={{ opacity:0, x:-40 }} whileInView={{ opacity:1, x:0 }}
             viewport={{ once:true }} transition={{ duration:0.8 }}
             className="flex justify-center">
-            <div className="glass-green rounded-2xl p-6 w-full max-w-[320px]">
+            <div className="glass-green rounded-2xl p-5 sm:p-6 w-full max-w-[320px]">
               <SaMap />
               <p className="text-center text-white/35 font-outfit font-bold uppercase tracking-widest mt-3"
                  style={{ fontSize:"0.58rem" }}>SOUTH AFRICA — WARD BY-ELECTIONS 2026</p>

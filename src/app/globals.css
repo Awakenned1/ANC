@@ -15,11 +15,10 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* Site-wide fixed background image */
   background-color: #0A0A0A;
   background-image: url('/ANCBG.png');
   background-size: cover;
-  background-position: center top;
+  background-position: 20% top;
   background-attachment: fixed;
   background-repeat: no-repeat;
   color: white;
@@ -28,12 +27,74 @@ body {
   line-height: 1.5;
 }
 
+/* ── Responsive background ─────────────────────── */
+@media (max-width: 1024px) {
+  body {
+    background-size: cover;
+    background-position: 18% top;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background-size: 160%;
+    background-position: 30% top;
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background-size: 180%;
+    background-position: 25% top;
+    background-attachment: scroll;
+  }
+}
+
+/* ── Global section spacing reset ──────────────── */
+section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (max-width: 1024px) {
+  section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* ── Collapse min-h-screen on mobile ───────────── */
+/* Hero sections that use min-h-screen can leave a
+   large empty gap on short content — override here */
+@media (max-width: 768px) {
+  .min-h-screen {
+    min-height: unset !important;
+  }
+  [class*="min-h-screen"] {
+    min-height: unset !important;
+  }
+}
+
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: rgba(0,0,0,.8); }
 ::-webkit-scrollbar-thumb { background: #00853F; border-radius: 3px; }
 
 /* ── Section overlay layers ────────────────────── */
-/* Each section sits on top of the fixed bg with a dark tint */
 .section-overlay {
   background: rgba(0, 0, 0, 0.48);
   backdrop-filter: blur(0px);

@@ -122,6 +122,16 @@ export default function VoterInformation() {
               <h3 className="font-outfit font-extrabold uppercase tracking-widest"
                   style={{ fontSize:"0.85rem", color:"#F7C600" }}>Required ID</h3>
             </div>
+            <div
+              className="mb-5 overflow-hidden rounded-2xl border"
+              style={{ borderColor: "rgba(247,198,0,.22)", background: "rgba(255,255,255,.04)" }}
+            >
+              <img
+                src="/ID%20.png"
+                alt="Accepted voter identification documents"
+                className="w-full h-auto object-contain"
+              />
+            </div>
             <p className="text-white/45 mb-5" style={{ fontSize:"0.78rem", lineHeight:1.6 }}>
               Present one of these valid documents at your voting station:
             </p>
@@ -140,24 +150,27 @@ export default function VoterInformation() {
           <motion.div
             initial={{ opacity:0, y:40 }} whileInView={{ opacity:1, y:0 }}
             viewport={{ once:true }} transition={{ duration:0.6, delay:0.2 }}
-            className="p-6 rounded-[20px] glass-dark flex flex-col gap-4 justify-center">
-            <h3 className="font-outfit font-extrabold text-white uppercase tracking-wider mb-1"
+            className="p-6 rounded-[20px] glass-dark flex flex-col gap-6 justify-between min-h-[320px] md:min-h-0">
+            <h3 className="font-outfit font-extrabold text-white uppercase tracking-wider"
                 style={{ fontSize:"0.9rem" }}>Take Action Today</h3>
             <a href="https://registertovote.elections.org.za/"
                target="_blank" rel="noopener noreferrer"
-               className="flex items-center gap-3 px-5 py-3.5 rounded-[20px] font-outfit font-extrabold uppercase text-white transition-all hover:scale-105"
+               className="flex w-full items-center gap-3 px-5 py-3.5 rounded-[20px] font-outfit font-extrabold uppercase text-white transition-all hover:scale-105"
                style={{ background:"rgba(0,133,63,.85)", fontSize:"0.82rem", letterSpacing:"0.07em",
                         boxShadow:"0 0 18px rgba(0,255,132,.3)", border:"1px solid rgba(0,255,132,.25)" }}>
               <UserPlus size={18} />
               <span className="leading-tight">REGISTER<br/>TO VOTE ONLINE</span>
               <span className="ml-auto text-lg">&rsaquo;</span>
             </a>
-            <div className="flex items-center gap-2 justify-center pt-1">
-              <div className="px-3 py-1.5 rounded" style={{ background:"#003DA6" }}>
-                <span className="font-outfit font-black text-white" style={{ fontSize:"1rem", letterSpacing:"0.12em" }}>IEC</span>
-              </div>
-              <span className="font-outfit font-bold text-white/35 uppercase"
-                    style={{ fontSize:"0.55rem", letterSpacing:"0.2em" }}>SOUTH AFRICA</span>
+            <div className="flex flex-col items-center gap-2 pt-2">
+              <img
+                src="/Iec-South-Africa-Logo-Vector.svg-.png"
+                alt="IEC South Africa"
+                className="h-12 w-auto object-contain sm:h-14"
+              />
+              <span className="font-outfit font-bold text-white/35 uppercase text-center" style={{ fontSize:"0.55rem", letterSpacing:"0.2em" }}>
+                SOUTH AFRICA
+              </span>
             </div>
           </motion.div>
 

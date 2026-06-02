@@ -3,7 +3,6 @@ import HeroBanner         from "@/components/HeroBanner";
 import ImportantDatesSection from "@/components/ImportantDatesSection";
 import WardByElections    from "@/components/WardByElections";
 import VoterInformation   from "@/components/VoterInformation";
-import CommunityDev       from "@/components/CommunityDev";
 import SiteFooter         from "@/components/SiteFooter";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
       <ImportantDatesSection />
       <WardByElections />
       <VoterInformation />
-      <CommunityDev />
       <SiteFooter />
     </main>
   );

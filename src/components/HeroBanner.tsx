@@ -40,12 +40,11 @@ function CountBox({ value, label }: { value: number; label: string }) {
 
   return (
     <div
-      className="flex flex-col items-center justify-center rounded-[22px] px-4 py-4 text-center"
+      className="flex w-full min-w-0 flex-col items-center justify-center rounded-[22px] px-3 py-3 text-center sm:w-auto sm:min-w-[108px] sm:px-4 sm:py-4"
       style={{
         background: "rgba(0,0,0,.68)",
         border: "1px solid rgba(247,198,0,.22)",
         boxShadow: "0 12px 35px rgba(0,0,0,.35)",
-        minWidth: "108px",
       }}
     >
       <AnimatePresence mode="popLayout">
@@ -56,7 +55,7 @@ function CountBox({ value, label }: { value: number; label: string }) {
           exit={{ y: 8, opacity: 0 }}
           transition={{ duration: 0.25 }}
           className="font-bebas leading-none block text-white"
-          style={{ fontSize: "clamp(2.4rem, 4.8vw, 3.7rem)", letterSpacing: "0.05em" }}
+            style={{ fontSize: "clamp(2rem, 8vw, 3.7rem)", letterSpacing: "0.05em" }}
         >
           {display}
         </motion.span>
@@ -72,7 +71,7 @@ export default function HeroBanner() {
   const { d, h, m, s } = useCountdown();
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-[100svh] lg:min-h-screen flex items-center overflow-hidden">
 
       {/* Dark vignette — strong on left for text, opens up right so flag shows */}
       <div className="absolute inset-0"
@@ -95,11 +94,11 @@ export default function HeroBanner() {
            style={{ background: "radial-gradient(ellipse 55% 80% at 100% 20%,rgba(247,198,0,.12) 0%,transparent 65%)" }} />
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 pt-28 pb-16 w-full">
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 xl:gap-14 items-center">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-14 lg:pb-16 w-full">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 items-center">
 
           {/* LEFT */}
-          <div>
+          <div className="order-2 lg:order-1">
             <motion.p {...fadeUp(0.05)}
               className="font-outfit font-semibold text-white/60 tracking-[0.38em] uppercase mb-1"
               style={{ fontSize: "0.95rem" }}>
@@ -158,16 +157,45 @@ export default function HeroBanner() {
                 <UserPlus size={17} /> Register / Update Voter Details
               </a>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
+              transition={{ duration:0.8, delay:0.5, ease:[0.25,0.46,0.45,0.94] }}
+              className="mt-6 rounded-[26px] p-4 sm:p-6"
+              style={{
+                background: "rgba(0,0,0,.62)",
+                backdropFilter: "blur(14px)",
+                WebkitBackdropFilter: "blur(14px)",
+                border: "1px solid rgba(247,198,0,.18)",
+                boxShadow: "0 0 60px rgba(247,198,0,.1),0 20px 50px rgba(0,0,0,.45)",
+                width: "100%",
+                maxWidth: "540px",
+              }}
+            >
+              <div className="flex items-center gap-2 mb-4 justify-center lg:justify-start">
+                <Calendar size={15} className="text-[#F7C600]" />
+                <span className="font-outfit font-bold text-white/60 uppercase tracking-[0.18em] sm:tracking-[0.22em]" style={{ fontSize: "0.58rem" }}>
+                  COUNTDOWN TO THE 2026 LOCAL GOVERNMENT ELECTIONS
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 items-stretch justify-center gap-2 sm:flex sm:flex-wrap sm:gap-3 lg:justify-start">
+                <CountBox value={d} label="Days" />
+                <CountBox value={h} label="Hours" />
+                <CountBox value={m} label="Minutes" />
+                <CountBox value={s} label="Seconds" />
+              </div>
+            </motion.div>
           </div>
 
           {/* RIGHT: slogan and countdown */}
           <motion.div
             initial={{ opacity:0, x:40 }} animate={{ opacity:1, x:0 }}
             transition={{ duration:0.95, delay:0.45, ease:[0.25,0.46,0.45,0.94] }}
-            className="flex flex-col gap-5 lg:items-end"
+            className="order-1 flex w-full flex-col gap-4 sm:gap-5 lg:order-2 lg:items-end"
           >
             <div
-              className="rounded-2xl p-6 text-center lg:text-right"
+              className="hidden rounded-2xl p-6 text-center lg:block lg:text-right"
               style={{
                 background: "rgba(0,0,0,.55)",
                 backdropFilter: "blur(16px)",
@@ -193,33 +221,6 @@ export default function HeroBanner() {
               <p className="font-outfit font-extrabold mt-1" style={{ fontSize:"0.78rem", color:"#F7C600" }}>
                 4 NOVEMBER 2026
               </p>
-            </div>
-
-            <div
-              className="rounded-[26px] p-5 sm:p-6"
-              style={{
-                background: "rgba(0,0,0,.62)",
-                backdropFilter: "blur(14px)",
-                WebkitBackdropFilter: "blur(14px)",
-                border: "1px solid rgba(247,198,0,.18)",
-                boxShadow: "0 0 60px rgba(247,198,0,.1),0 20px 50px rgba(0,0,0,.45)",
-                width: "100%",
-                maxWidth: "540px",
-              }}
-            >
-              <div className="flex items-center gap-2 mb-4 justify-center lg:justify-start">
-                <Calendar size={15} className="text-[#F7C600]" />
-                <span className="font-outfit font-bold text-white/60 uppercase tracking-[0.22em]" style={{ fontSize: "0.62rem" }}>
-                  COUNTDOWN TO THE 2026 LOCAL GOVERNMENT ELECTIONS
-                </span>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                <CountBox value={d} label="Days" />
-                <CountBox value={h} label="Hours" />
-                <CountBox value={m} label="Minutes" />
-                <CountBox value={s} label="Seconds" />
-              </div>
             </div>
           </motion.div>
 
