@@ -39,7 +39,7 @@ export default function Header() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3 sm:gap-4">
 
         {/* Brand */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 min-w-0">
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink min-w-0 flex-wrap sm:flex-nowrap max-w-[calc(100vw-4.5rem)] sm:max-w-none">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -56,14 +56,14 @@ export default function Header() {
               className="w-full h-full object-cover"
             />
           </motion.div>
-          <div className="flex min-w-0 flex-col leading-none">
-            <span className="font-bold text-white/80 tracking-widest uppercase whitespace-nowrap"
-                  style={{ fontSize: "clamp(0.5rem, 1.8vw, 0.65rem)" }}>
+          <div className="flex min-w-0 w-full sm:w-auto flex-col leading-none">
+            <span className="font-bold text-white/80 tracking-widest uppercase whitespace-normal sm:whitespace-nowrap"
+                  style={{ fontSize: "clamp(0.48rem, 1.6vw, 0.65rem)" }}>
               TOLOMANE MNYAYIZA
             </span>
             <span
-              className="font-black tracking-widest uppercase leading-tight whitespace-nowrap"
-              style={{ color: "#FFC107", fontSize: "clamp(0.9rem, 3vw, 1.3rem)" }}
+              className="font-black tracking-widest uppercase leading-tight whitespace-normal sm:whitespace-nowrap"
+              style={{ color: "#FFC107", fontSize: "clamp(0.9rem, 2.6vw, 1.3rem)" }}
             >
               REGION
             </span>

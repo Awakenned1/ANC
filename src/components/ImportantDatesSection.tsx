@@ -25,6 +25,7 @@ const cards = [
 export default function ImportantDatesSection() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [darkMode, setDarkMode] = useState(false);
 
   const scrollToIndex = (index: number) => {
     const carousel = carouselRef.current;
@@ -60,8 +61,10 @@ export default function ImportantDatesSection() {
     };
   }, []);
 
+  // autoplay removed — carousel will not auto-advance
+
   return (
-    <section id="dates" className="py-20 relative">
+    <section id="agenda" className={`py-20 relative ${darkMode ? 'dark-mode' : ''}`}>
       <div className="absolute inset-0 section-overlay-green" />
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6">
@@ -82,6 +85,14 @@ export default function ImportantDatesSection() {
             Swipe or use the arrows to browse upcoming dates
           </p>
           <div className="hidden md:flex items-center gap-2">
+            <button
+              id="btnValue"
+              type="button"
+              onClick={() => setDarkMode((d) => !d)}
+              className={`px-3 py-1 rounded ${darkMode ? 'btn-light' : 'btn-dark'}`}
+            >
+              {darkMode ? 'Light mode' : 'Dark mode'}
+            </button>
             <button
               type="button"
               aria-label="Previous date"
@@ -108,7 +119,7 @@ export default function ImportantDatesSection() {
         <div className="-mx-4 px-4 md:mx-0 md:px-0">
           <div
             ref={carouselRef}
-            className="flex gap-4 overflow-x-auto md:overflow-visible py-2 snap-x snap-mandatory scroll-smooth"
+            className="grid grid-cols-1 gap-4 py-2 md:flex md:gap-4 md:overflow-x-auto md:snap-x snap-mandatory scroll-smooth swiper-container"
           >
             {cards.map(({ Icon, iconBg, iconClr, tag, date, time, tagClr, desc }, i) => (
               <motion.div
@@ -116,14 +127,11 @@ export default function ImportantDatesSection() {
                 initial={{ opacity:0, y:36 }} whileInView={{ opacity:1, y:0 }}
                 viewport={{ once:true }} transition={{ duration:0.55, delay: i*0.08 }}
                 whileHover={{ y:-6, transition:{ duration:0.18 } }}
-                className="snap-start shrink-0 min-w-[88%] sm:min-w-[72%] md:min-w-[55%] lg:min-w-[32%]"
+                className="w-full md:snap-start md:shrink-0 md:min-w-[55%] lg:min-w-[32%]"
               >
                 <div
-                  className="p-5 sm:p-6 rounded-2xl cursor-default h-full"
+                  className="important-card p-5 sm:p-6 rounded-2xl cursor-default h-full"
                   style={{
-                    background: "rgba(255,255,255,0.96)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
                     borderTop: `6px solid ${tagClr}`,
                     boxShadow: "0 10px 30px rgba(2,6,23,0.08)",
                   }}

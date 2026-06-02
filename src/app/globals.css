@@ -172,3 +172,24 @@ section {
       0 10px 35px rgba(0,0,0,0.70);
   }
 }
+
+/* Important Dates carousel and dark mode tweaks */
+.swiper-container { scroll-behavior: smooth; }
+.important-card { background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+/* Dark mode for the agenda section */
+#agenda.dark-mode { background: rgba(0,0,0,0.4); }
+#agenda.dark-mode .important-card {
+  background: rgba(2,6,23,0.78) !important;
+  color: #e6fbe8;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+/* Toggle button styles */
+.btn-dark { background: rgba(0,0,0,0.55); color: #fff; border: 1px solid rgba(255,255,255,0.06); }
+.btn-light { background: #F7C600; color: #000; border: 1px solid rgba(0,0,0,0.06); }
+
+/* Small adjustments for carousel indicators */
+.swiper-container::-webkit-scrollbar { height: 7px; }
+.swiper-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 6px; }

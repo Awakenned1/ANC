@@ -11,8 +11,8 @@ export default function Home() {
       <SiteHeader />
       <HeroBanner />
       <ImportantDatesSection />
-      <WardByElections />
       <VoterInformation />
+      <WardByElections />
       <SiteFooter />
     </main>
   );
